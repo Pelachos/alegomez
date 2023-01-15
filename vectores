@@ -1,0 +1,250 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <string.h>
+
+#define CANT 9
+#define TUR 15
+#define pal 11
+
+/* A COMPLETAR */
+
+int selectopt(void);
+void ingresar_datos(int vector[], int dim);
+int sumar_elementos_dobles(int vector[], int dim);
+void operacion_strings( char palabra1[],char palabra2[]);/* A COMPLETAR */
+enum opciones {INGRESAR = 1,LISTAR,CREAR_Y_MOSTRAR_VECTOR,SALIR};
+
+int main()
+{
+    int opt, s;
+    bool seguir = true, cargarok= false;
+    int vdatos[CANT];
+    char palabra1[TUR];
+    char palabra2[TUR];
+    /* A COMPLETAR */
+
+    while (seguir)
+    {
+        opt = selectopt ();
+        switch (opt)
+        {
+        case INGRESAR:
+            ingresar_datos(vdatos,CANT);/* A COMPLETAR */
+            cargarok=true;
+            break;
+        case LISTAR:
+            if (cargarok==false)
+
+                printf("\nIngrese a datos en el vector:\n");
+
+            else
+
+                listar_datos(vdatos, CANT);
+                s= sumar_elementos_dobles(vdatos, CANT);
+
+                printf("\nLa suma de los elementos par es: %d", s);
+/* A COMPLETAR */
+            break;
+        case CREAR_Y_MOSTRAR_VECTOR:
+            operacion_strings(palabra1,palabra2);
+             /* A COMPLETAR */
+            break;
+        case SALIR:
+            seguir = false;
+            break;
+        }
+
+
+
+    }
+
+    return EXIT_SUCCESS;
+}
+
+
+int selectopt()
+{
+    int r;
+    int cuantos;
+    bool deboSeguir;
+    do
+    {
+printf ("\n------------------------------------------------------------------------------");
+        printf ("\nIngrese una opcion\n");
+        printf ("1 - INGRESAR\n");
+        printf ("2 - LISTAR\n");
+        printf ("3 - CREAR Y MOSTRAR VECTOR\n");
+        printf ("4 - Salir\n");
+printf ("\n------------------------------------------------------------------------------\n");
+        printf ("==> ");
+        cuantos = scanf ("%d",&r);
+        deboSeguir =  true;
+        if (cuantos == 0)
+            printf("Debe ingresar una opción\n");
+        else
+        {
+            if ((r < 1) || (r > 4/* A COMPLETAR */))
+            {
+                printf ("Las opciones son de 1 a 4 solamente\n");
+            }
+            else
+            {
+                deboSeguir = false;
+            }
+        }
+    }
+    while (deboSeguir);
+
+    return r;
+}
+
+
+void ingresar_datos(    int vector[], int dim)
+{
+    int i;
+
+    for(i=0; i<dim; i++)
+
+    {
+
+        printf("\nIngrese el %d valor a cargar en el vector:", i+1);
+
+        scanf("%d", &vector[i]);
+
+        /* A COMPLETAR */
+}
+    return;
+
+}
+
+int sumar_elementos_dobles(int vector[], int dim)
+
+{
+
+    int i, sumpar=0;
+
+    for(i=0; i<dim; i+=2)
+
+        sumpar=sumpar+vector[i];
+
+
+
+    return sumpar;
+
+}
+void listar_datos(int vector[], int dim)
+
+//{
+//    int i;
+//    printf("\nEl vector ingresado es: \n\n");
+//    for(i=0; i<dim; i++)
+//    {
+//        printf("vector[%d]= %d \n", i, vector[i]);
+//   }
+//    return;
+//}
+{
+    int cont=0,cont2=0;
+    printf("\n**********************\n");
+    for (int i=0; i<dim; i+=2)
+    {
+        printf("La posicion %d) pertenece al vector %f \n",i,vector[i]);
+        cont++;
+    }
+    printf("\n**********************\n");
+    for (int i=1; i<dim; i+=2)
+    {
+        printf("La posicion %d) pertenece al vector %f \n",i,vector[i]);
+        cont2++;
+    }
+    printf("**********************\n");
+    if(cont==cont2)
+    {
+        return 's';
+    }
+    else
+    {
+        return 'n';
+    }
+
+}
+void operacion_strings(char PALABRA1[],char PALABRA2[])
+
+{
+    int i = 0;
+    printf("\n Ingrese la [palabra 1]: \n");
+    scanf("%*C%[^\n]",PALABRA1);
+    printf("\n Ingrese la [palabra 2]: \n");
+    scanf("%*C%[^\n]",PALABRA2);
+    if (strlen(palabra)>strlen(palabra2))
+    {
+            int i = strlen(palabra)-1;
+           while(i>=0){
+    printf("%c",palabra[i]);
+    i--;
+    }
+    } else {
+            int i = strlen(palabra2)-1;
+               while(i>=0){
+    printf("%c",palabra2[i]);
+    i--;
+    }
+    }
+
+
+}
+
+//    int devolucion = 0;
+//    int delov = 0;
+//    int j = 0;
+//    char aux = 0;
+//    devolucion = strcmp(PALABRA1,PALABRA2);
+//    delov = strlen (PALABRA1,PALABRA2);
+//    printf("La comparacion de strings devolvio: %d\n",delov);
+//    if(devolucion < 0)
+//    {
+//        printf("La cadena [%s] ES MAYOR A [%s]\n",PALABRA2,PALABRA1);
+//        for(i = 0; i < pal ; i++)
+//        {
+//            for(j = 0; j < pal ; j++)
+//            {
+//                if( PALABRA2[j] > PALABRA2[i] )
+//                {
+//                    aux = PALABRA2[j];
+//                    PALABRA2[j] = PALABRA2[i];
+//                    PALABRA2[i] = aux;
+//                }
+//            }
+//        }
+//        printf("La cadena mayor ordenada es: >> [%s] <<\n",PALABRA1);
+//    }
+//    else if(devolucion == 0)
+//    {
+//        printf("Las cadenas son iguales\n");
+//    }
+//    else
+//    {
+//        printf("La cadena [%s] ES MAYOR A a [%s]\n",PALABRA2,PALABRA1);
+//        for(i = 0; i < pal ; i++)
+//        {
+//            for(j = 0; j < pal ; j++)
+//            {
+//                if( PALABRA1[j] > PALABRA1[i] )
+//                {
+//                    aux = PALABRA1[j];
+//                    PALABRA1[j] = PALABRA1[i];
+//                    PALABRA1[i] = aux;
+//                }
+//            }
+//        }
+//        printf("La cadena mayor ordenada es: >> [%s] <<\n",PALABRA2);
+//    }
+}//
+
+
+
+
+
+
+/* A COMPLETAR */
